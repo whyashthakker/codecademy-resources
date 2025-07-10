@@ -1,0 +1,6 @@
+crewai
+crewai-tools
+google-search-results
+python-dotenv
+streamlit
+pydantic
