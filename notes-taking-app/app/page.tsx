@@ -19,26 +19,13 @@ export default function Home() {
   const [notes, setNotes] = useState<Note[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [loading, setLoading] = useState(true)
-  const [darkMode, setDarkMode] = useState(false)
   const [addDialogOpen, setAddDialogOpen] = useState(false)
 
   useEffect(() => {
     fetchNotes()
-    // Load dark mode preference
-    const savedDarkMode = localStorage.getItem('darkMode')
-    if (savedDarkMode) {
-      setDarkMode(JSON.parse(savedDarkMode))
-    }
   }, [])
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode))
-  }, [darkMode])
+
 
   const fetchNotes = async () => {
     try {
@@ -104,9 +91,7 @@ export default function Home() {
     }
   }
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
+
 
   const filteredNotes = notes.filter(note =>
     note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -118,11 +103,11 @@ export default function Home() {
       <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #e0f7fa 0%, #c8f7e5 100%)' }}>
         <div className="text-center">
           <div className="relative">
-            <BookOpen className="text-blue-600 dark:text-blue-400 mx-auto mb-4 animate-pulse" size={48} />
+            <BookOpen className="text-blue-600 mx-auto mb-4 animate-pulse" size={48} />
             <Sparkles className="absolute -top-2 -right-2 text-purple-500 animate-spin" size={20} />
           </div>
-          <div className="text-xl text-gray-600 dark:text-gray-300 font-medium">Loading your notes...</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400 mt-2">Getting everything ready</div>
+          <div className="text-xl text-gray-600 font-medium">Loading your notes...</div>
+          <div className="text-sm text-gray-500 mt-2">Getting everything ready</div>
         </div>
       </div>
     )
@@ -157,13 +142,13 @@ export default function Home() {
           {filteredNotes.length === 0 ? (
             <div className="text-center py-20">
               <div className="relative inline-block mb-6">
-                <BookOpen className="mx-auto text-gray-400 dark:text-gray-500" size={64} />
+                <BookOpen className="mx-auto text-gray-400" size={64} />
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-bounce"></div>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              <h3 className="text-2xl font-semibold text-gray-700 mb-2">
                 {searchTerm ? 'No notes found' : 'Your notebook is empty'}
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 text-lg mb-8">
+              <p className="text-gray-500 text-lg mb-8">
                 {searchTerm 
                   ? 'Try searching with different keywords or create a new note.' 
                   : 'Start your journey by creating your first note!'

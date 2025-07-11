@@ -69,7 +69,7 @@ const DialogContent: React.FC<DialogContentProps> = ({ children, className }) =>
     <DialogOverlay />
     <div
       className={cn(
-        "relative z-50 grid w-full max-w-lg gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg border-gray-200 dark:border-gray-700 mt-8",
+        "relative z-50 grid w-full max-w-lg gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg border-gray-200 mt-8",
         className
       )}
       style={{ background: 'linear-gradient(135deg, #e0f7fa 0%, #c8f7e5 100%)' }}
@@ -104,7 +104,7 @@ const DialogFooter: React.FC<DialogFooterProps> = ({ children, className }) => (
 const DialogTitle: React.FC<DialogTitleProps> = ({ children, className }) => (
   <h2
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight text-gray-900 dark:text-gray-100",
+      "text-lg font-semibold leading-none tracking-tight text-gray-900",
       className
     )}
   >
@@ -115,7 +115,7 @@ const DialogTitle: React.FC<DialogTitleProps> = ({ children, className }) => (
 const DialogDescription: React.FC<DialogDescriptionProps> = ({ children, className }) => (
   <p
     className={cn(
-      "text-sm text-gray-600 dark:text-gray-400",
+      "text-sm text-gray-600",
       className
     )}
   >
@@ -127,7 +127,7 @@ const DialogClose: React.FC<{ onClick: () => void; className?: string }> = ({ on
   <button
     onClick={onClick}
     className={cn(
-      "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground text-gray-500 hover:text-gray-700 dark:hover:text-gray-300",
+      "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground text-gray-500 hover:text-gray-700",
       className
     )}
   >
