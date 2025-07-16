@@ -7,6 +7,7 @@ import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 
+
 export default function Home() {
   return (
     <Layout>
