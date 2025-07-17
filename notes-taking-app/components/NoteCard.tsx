@@ -60,18 +60,23 @@ export default function NoteCard({ note, onUpdate, onDelete }: NoteCardProps) {
       const data = await res.json()
       if (res.ok && data.summary) {
         setSummary(data.summary)
-        // Update the note in the database
-        await fetch(`/api/notes/${note.id}`, {
+        const updateRes = await fetch(`/api/notes/${note.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ title: note.title, content: data.summary }),
         })
-        // Update local state/UI
-        setContent(data.summary)
+        if (updateRes.ok) {
+          setContent(data.summary)
+        } else {
+          const updateError = await updateRes.json()
+          console.error('Failed to update note with summary:', updateError.error)
+          setSummaryError('Failed to save summary')
+        }
       } else {
         setSummaryError(data.error || 'Failed to summarize')
       }
     } catch (err) {
+      console.error('Summarization error:', err)
       setSummaryError('Failed to summarize')
     } finally {
       setSummarizing(false)

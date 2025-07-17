@@ -51,6 +51,9 @@ export default function Home() {
       
       if (response.ok) {
         fetchNotes()
+      } else {
+        const errorData = await response.json()
+        console.error('Failed to add note:', errorData.error)
       }
     } catch (error) {
       console.error('Failed to add note:', error)
@@ -69,6 +72,9 @@ export default function Home() {
       
       if (response.ok) {
         fetchNotes()
+      } else {
+        const errorData = await response.json()
+        console.error('Failed to update note:', errorData.error)
       }
     } catch (error) {
       console.error('Failed to update note:', error)
